@@ -26,7 +26,7 @@ from serial.tools import list_ports
 
 from pywebdriver import app, config, drivers
 
-from .base_driver import AbstractDriver, check
+from .base_driver import AbstractDriver
 
 
 class MagneticStripeReader:
@@ -110,11 +110,6 @@ class ScannerDriver(AbstractDriver):
 
     def get_status(self, **params):
         messages = []
-        mapstate = {
-            3: "Idle",
-            4: "Scanning",
-            5: "Stopped",
-        }
         conn = self.getConnection()
         if not conn:
             return {
