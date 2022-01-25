@@ -91,6 +91,7 @@ flask_args = dict(
     use_reloader=config.getboolean("flask", "use_reloader", fallback=False),
     processes=0,
     threaded=True,
+    ssl_context="adhoc",
 )
 if config.has_option("flask", "sslcert"):
     sslcert = config.get("flask", "sslcert")
