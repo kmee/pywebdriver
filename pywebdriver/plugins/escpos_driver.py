@@ -57,6 +57,11 @@ elif (
     and config.get("escpos_driver", "device_type") == "network"
 ):
     device_type = "network"
+elif (
+    config.has_option("escpos_driver", "device_type")
+    and config.get("escpos_driver", "device_type") == "dummy"
+):
+    device_type = "dummy"
 else:
     device_type = "usb"
 
@@ -153,6 +158,8 @@ try:  # noqa C901
                 "usable": True,
             },
         }
+    elif device_type == "dummy":
+        from escpos.printer import Dummy as POSDriver
     elif device_type == "network":
         from escpos.printer import Network as POSDriver
     else:
@@ -186,6 +193,8 @@ else:
                 kwargs["baudrate"] = config.getint("escpos_driver", "serial_baudrate")
                 kwargs["bytesize"] = config.getint("escpos_driver", "serial_bytesize")
                 kwargs["timeout"] = config.getint("escpos_driver", "serial_timeout")
+                POSDriver.__init__(self, **kwargs)
+            elif device_type == "dummy":
                 POSDriver.__init__(self, **kwargs)
             elif device_type == "network":
                 super(POSDriver, self).__init__(**kwargs)
