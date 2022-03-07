@@ -23,11 +23,18 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	sudo mkdir -p /etc/pywebdriver/cert
 	sudo chown pywebdriver:$(whoami) /etc/pywebdriver/cert
-	sudo wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-linux-amd64 -P /etc/pywebdriver/cert
-	sudo chmod +x /etc/pywebdriver/cert/mkcert-v1.4.4-linux-amd64
+	case "$(uname -m)" in
+		x86_64) mkcert_arch="amd64" ;;
+		aarch64 | arm64) mkcert_arch="arm64" ;;
+		armv6l | armv7l) mkcert_arch="arm" ;;
+		*) echo "Unsupported architecture: $(uname -m)"; exit 1 ;;
+	esac
+	mkcert="mkcert-v1.4.4-linux-${mkcert_arch}"
+	sudo wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/${mkcert} -P /etc/pywebdriver/cert
+	sudo chmod +x /etc/pywebdriver/cert/${mkcert}
 	cd /etc/pywebdriver/cert
-	sudo /etc/pywebdriver/cert/mkcert-v1.4.4-linux-amd64 -install
-	sudo /etc/pywebdriver/cert/mkcert-v1.4.4-linux-amd64 localhost 127.0.0.1
+	sudo /etc/pywebdriver/cert/${mkcert} -install
+	sudo /etc/pywebdriver/cert/${mkcert} localhost 127.0.0.1
 	sudo chown -R pywebdriver:$(whoami) /etc/pywebdriver/cert
 	sudo sed -i 's/.*sslcert.*/sslcert=\/etc\/pywebdriver\/cert\/localhost+1.pem/' /etc/pywebdriver/config.ini
 	sudo sed -i 's/.*sslkey.*/sslkey=\/etc\/pywebdriver\/cert\/localhost+1-key.pem/' /etc/pywebdriver/config.ini
