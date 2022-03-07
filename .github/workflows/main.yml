@@ -123,8 +123,8 @@ jobs:
           debuild
       - name: Test build
         run: |
-          mv ../pywebdriver_$(date +%Y%m%d)_amd64.deb ../pywebdriver_focal.deb
-          sudo dpkg -i ../pywebdriver_focal.deb
+          mv ../pywebdriver_$(date +%Y%m%d)_arm.deb ../pywebdriver_arm.deb
+          sudo dpkg -i ../pywebdriver_arm.deb
           sh debian/replace_snakeoil_mkcert.sh
           sudo journalctl -u pywebdriver
           sudo service pywebdriver status
@@ -133,6 +133,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ../pywebdriver_focal.deb
+            ../pywebdriver_arm.deb
         env:
           GITHUB_TOKEN: ${{ secrets.WEB_GITHUB_TOKEN }}
