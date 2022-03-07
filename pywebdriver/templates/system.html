@@ -69,6 +69,7 @@ endblock %} {% block content %}
       <th>{{ _('Name') }}</th>
       <th>{{ _('Version') }}</th>
       <th>{{ _('Location') }}</th>
+      <th>{{ _('License') }}</th>
     </tr>
 
     <tr></tr>
@@ -77,9 +78,10 @@ endblock %} {% block content %}
   <tbody>
     {% for packages in installed_python_packages %}
     <tr>
-      <td>{{packages['key']}}</td>
-      <td>{{packages['version']}}</td>
-      <td>{{packages['location']}}</td>
+      <td>{{packages.metadata['Name']}}</td>
+      <td>{{packages.version}}</td>
+      <td>{{packages.locate_file('.')}}</td>
+      <td>{{packages.metadata['License']}}</td>
     </tr>
     {% endfor %}
   </tbody>
