@@ -19,6 +19,8 @@
 ###############################################################################
 
 import sys
+import os
+import glob
 
 import serial
 from flask import jsonify
@@ -30,9 +32,10 @@ from .base_driver import AbstractDriver
 
 
 class MagneticStripeReader:
-    def __init__(self):
+
+    def __init__(self, port=False):
         values = dict()
-        values["port"] = config.get("scan_driver", "port") or "/dev/ttyS0"
+        values["port"] = port or os.environ.get("IOT_SCAN_PORT", "/dev/ttyS0")
         values["baudrate"] = config.getint("scan_driver", "baudrate")
         values["bytesize"] = config.getint("scan_driver", "bytesize")
         values["parity"] = config.get("scan_driver", "parity")
@@ -51,6 +54,8 @@ class MagneticStripeReader:
         #     data += serial.LF.decode("utf-8")
 
         port = values["port"]
+        app.logger.debug(f"scan port {port}")
+
         if (
             sys.platform.startswith("linux")
             or sys.platform.startswith("cygwin")
@@ -102,8 +107,23 @@ class ScannerDriver(AbstractDriver):
     def getConnection(self):
         try:
             return MagneticStripeReader()
-        except BaseException:
+        except BaseException as e:
+            app.logger.error(e)
             return False
+
+    def discover(self):
+        tty = glob.glob("/dev/ttyS*")
+        tty += glob.glob("/dev/ttyX*")
+        tty += glob.glob("/dev/ttyACM*")
+        connection = []
+        for port in tty:
+            try:
+                conn = MagneticStripeReader(port)
+                connection.append(port)
+            except BaseException as e:
+                app.logger.error(e)
+                continue
+        return connection
 
     def get_vendor_product(self):
         return "scanner-icon"
@@ -135,5 +155,15 @@ def scan_scan_http():
     barcode = result.get("data")
     return jsonify(jsonrpc="2.0", result=barcode)
 
+
+@app.route("/hw_proxy/scanner_discover", methods=["POST"])
+def scanner_discover_http():
+    conn = drivers["scanner"].discover()
+    # scan_result = {}
+    # for port in conn:
+    #     scan_result
+    #     # result = port.scan_do_operation("read")
+    #     scan_result[port] = result.get("data")
+    return jsonify(jsonrpc="2.0", result=conn)
 
 drivers["scanner"] = ScannerDriver()
