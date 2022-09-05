@@ -10,11 +10,12 @@ DEFAULT_DRIVERS = [
     "escpos_driver",
     "serial_driver",
     "scan_driver",
+    "sat_driver",
     "signature_driver",
     "telium_driver",
     "opcua_driver",
     "odoo7",
-    "odoo8",
+    "odoo8"
 ]
 
 try:
