@@ -20,3 +20,4 @@ pypostelium
 pyposdisplay
 cerberus
 gunicorn
+git+https://github.com/erpbrasil/erpbrasil.driver.sat.git@master
