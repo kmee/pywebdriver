@@ -9,6 +9,7 @@ DEFAULT_DRIVERS = [
     "display_driver",
     "escpos_driver",
     "serial_driver",
+    "sat_driver",
     "signature_driver",
     "telium_driver",
     "opcua_driver",
