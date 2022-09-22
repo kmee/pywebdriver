@@ -72,6 +72,14 @@ timeout=5
 eol_cr=true
 eol_lf=true
 
+[sat_driver]
+sat_pathsat_path=SAT.dll
+codigo_ativacao=12345678
+impressora=GenericESCPOS
+printer_params={"settings":"epson"}
+fiscal_printer_type=Windows
+assinatura=SGR-SAT SISTEMA DE GESTAO E RETAGUARDA DO SAT
+
 [adyen_driver]
 endpoint=https://terminal-api-live.adyen.com/sync
 api_key=api_key_from_adyen
@@ -115,3 +123,4 @@ keys=form01
 format=%(asctime)s %(levelname)8s %(message)s
 datefmt=
 class=logging.Formatter
+
