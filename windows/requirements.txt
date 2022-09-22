@@ -1,3 +1,4 @@
+pywin32
 pip>=10.0
 setuptools>=34
 wheel
@@ -20,3 +21,5 @@ pypostelium
 pyposdisplay
 cerberus
 gunicorn
+git+https://github.com/akretion/pyposdisplay.git
+git+https://github.com/akretion/pyposdisplay.git@master
