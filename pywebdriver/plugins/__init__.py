@@ -15,6 +15,7 @@ DEFAULT_DRIVERS = [
     "opcua_driver",
     "odoo7",
     "odoo8",
+    "sat_driver"
 ]
 
 try:
