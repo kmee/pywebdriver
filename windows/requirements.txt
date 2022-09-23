@@ -14,6 +14,7 @@ Pillow
 netifaces
 pycups
 pymtp
+dyndns
 cffi
 cryptography==2.8
 git+https://github.com/akretion/py-xml-escpos.git@py3
