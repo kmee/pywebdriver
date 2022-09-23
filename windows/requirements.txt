@@ -1,4 +1,4 @@
-pywin32
+#pywin32
 pip>=10.0
 setuptools>=34
 wheel
@@ -7,14 +7,12 @@ simplejson
 Flask
 Flask-Babel
 Flask-cors
-pyusb
-pyserial==3.5
 pif
 Pillow
 netifaces
-pycups
+#pycups
 pymtp
-dyndns
+#dyndns
 cffi
 cryptography==2.8
 git+https://github.com/akretion/py-xml-escpos.git@py3
