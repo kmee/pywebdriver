@@ -16,3 +16,4 @@ git+https://github.com/akretion/py-xml-escpos.git@py3
 git+https://github.com/akretion/pyposdisplay.git@master
 git+https://github.com/erpbrasil/erpbrasil.driver.sat.git@master
 satextrato
+git+https://github.com/kmee/pyescpos.git@feature/windows-print
