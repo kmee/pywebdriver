@@ -26,7 +26,11 @@ a = Analysis(['..\\pywebdriverd'],
              ('..\\venv\\Lib\\site-packages\\pif\\checkers\\whatismyip', 'pif\\checkers\\whatismyip'),
              ('..\\venv\\Lib\\site-packages\\pif\\checkers\\wtfismyip', 'pif\\checkers\\wtfismyip'),
              ],
-             binaries=[ ( '..\\pywebdriver\\SAT.dll', '.' ) ],
+             binaries=[
+			 ( '..\\pywebdriver\\sat\\tanca.dll', 'sat' ),
+			 ( '..\\pywebdriver\\sat\\tanca32.dll', 'sat' ),
+			 ( '..\\pywebdriver\\sat\\tanca64.dll', 'sat' )
+			 ],
              hiddenimports=['pywebdriver.plugins.cups_driver', 'pywebdriver.plugins.display_driver',
              'pywebdriver.plugins.escpos_driver', 'pywebdriver.plugins.serial_driver',
              'pywebdriver.plugins.signature_driver', 'pywebdriver.plugins.telium_driver',
