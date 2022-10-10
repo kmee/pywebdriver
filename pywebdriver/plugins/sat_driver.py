@@ -60,6 +60,8 @@ def int_sat():
 
 @app.route("/hw_proxy/enviar_cfe_sat/", methods=["POST", "GET", "PUT"])
 def enviar_cfe_sat():
+    for item in request.json["params"]["json"]["orderlines"]:
+        item["amount_estimate_tax"] = 0
     res = drivers["hw_fiscal"].action_call_sat("send", request.json["params"]["json"])
     return jsonify(jsonrpc="2.0", result=res)
 
