@@ -30,7 +30,7 @@ a = Analysis(['..\\pywebdriverd'],
 			 ( '..\\pywebdriver\\sat\\tanca.dll', 'sat' ),
 			 ( '..\\pywebdriver\\sat\\tanca32.dll', 'sat' ),
 			 ( '..\\pywebdriver\\sat\\tanca64.dll', 'sat' ),
-             ( '..\\pywebdriver\\sat\\dllsat_x86.dll', 'sat' ),
+             ( '..\\pywebdriver\\sat\\dllsat86.dll', 'sat' ),
              ( '..\\pywebdriver\\sat\\dllsat.dll', 'sat' )
 			 ],
              hiddenimports=['pywebdriver.plugins.cups_driver', 'pywebdriver.plugins.display_driver',
