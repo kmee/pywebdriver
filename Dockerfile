@@ -27,6 +27,8 @@ COPY /config/config.ini.tmpl /etc/pywebdriver/config.ini
 
 COPY pywebdriver ./pywebdriver
 
+COPY /mfe /opt/sefaz/mfe
+
 ENV UDEV=1
 
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
