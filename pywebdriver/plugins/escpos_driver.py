@@ -609,6 +609,15 @@ else:
         # </Odoo Version 7>
         # #####################################################################
 
+        def print_img(self, img, print_ip):
+            self.open_printer(printer_ip=print_ip)
+            with tempfile.NamedTemporaryFile() as f:
+                f.write(base64.b64decode(img))
+                f.flush()
+            
+                drivers["escpos"].image(f.name)
+                drivers["escpos"].cut()
+
     driver = ESCPOSDriver(app.config)
     drivers["escpos"] = driver
     installed = True
