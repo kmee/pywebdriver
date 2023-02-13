@@ -22,6 +22,8 @@
 import fnmatch
 import logging
 import math
+import tempfile
+import base64
 from configparser import NoOptionError
 
 import usb.core
@@ -274,15 +276,15 @@ else:
             except Exception as e:
                 self.set_status("error", e)
 
-        def open_cashbox(self, printer):
-            self.open_printer()
+        def open_cashbox(self, printer_ip=None):
+            self.open_printer(printer_ip=printer_ip)
             self.cashdraw(2)
             self.cashdraw(5)
             self.close()
 
         def get_status(self, **params):
             messages = []
-            self.open_printer()
+            self.open_printer(printer_ip=self.host)
             if not self.device:
                 status = "disconnected"
             elif device_type == "serial":
@@ -615,8 +617,10 @@ else:
                 f.write(base64.b64decode(img))
                 f.flush()
             
-                drivers["escpos"].image(f.name)
-                drivers["escpos"].cut()
+                self.image(f.name)
+                self.cut()
+            
+            self.close
 
     driver = ESCPOSDriver(app.config)
     drivers["escpos"] = driver

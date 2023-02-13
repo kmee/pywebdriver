@@ -91,9 +91,13 @@ def sessao_sat():
 
 @app.route("/hw_proxy/named_printer_action", methods=["POST"])
 def named_printer_action():
+    action = request.json["params"]["data"].get("action")
     printer_name_ip = request.json["params"]["data"]["printer_name"]
-    receipt = request.json["params"]["data"]["receipt"]
+    if action == "cashbox":
+        drivers["escpos"].open_cashbox(printer_name_ip)
+    elif action == "print_receipt":
+        receipt = request.json["params"]["data"]["receipt"]
 
-    drivers["escpos"].print_img(receipt, print_name_ip)
+        drivers["escpos"].print_img(receipt, printer_name_ip)
 
     return jsonify(jsonrpc="2.0", result=True)
