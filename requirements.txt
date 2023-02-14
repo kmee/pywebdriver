@@ -5,10 +5,10 @@ simplejson
 Flask
 Flask-Babel
 Flask-cors
-pyusb
+pyusb>=1.0.0
 pyserial
 pif
-Pillow
+Pillow>=2.0
 netifaces
 pycups
 pymtp
@@ -17,7 +17,15 @@ git+https://github.com/akretion/py-xml-escpos.git@py3
 # git+https://github.com/base4sistemas/satcfe.git@master
 git+https://github.com/kmee/satcomum.git@master
 git+https://github.com/kmee/satcfe.git@master
-git+https://github.com/python-escpos/python-escpos.git@master
+qrcode>=4.0
+python-barcode>=0.9.1,<1
+six
+appdirs
+PyYAML
+argparse
+argcomplete
+future
+python-escpos
 pypostelium
 pyposdisplay
 satextrato
