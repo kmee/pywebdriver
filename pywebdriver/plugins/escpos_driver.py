@@ -19,11 +19,11 @@
 #
 ###############################################################################
 
+import base64
 import fnmatch
 import logging
 import math
 import tempfile
-import base64
 from configparser import NoOptionError
 
 import usb.core
@@ -616,11 +616,11 @@ else:
             with tempfile.NamedTemporaryFile() as f:
                 f.write(base64.b64decode(img))
                 f.flush()
-            
+
                 self.image(f.name)
                 self.cut()
-            
-            self.close
+
+            self.close()
 
     driver = ESCPOSDriver(app.config)
     drivers["escpos"] = driver

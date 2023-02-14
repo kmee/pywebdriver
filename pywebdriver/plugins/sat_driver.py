@@ -6,9 +6,9 @@ from flask import jsonify, request
 from pywebdriver import app, drivers
 
 from .base_driver import ThreadDriver
-from .cups_driver import ExtendedCups
 
 _logger = logging.getLogger(__name__)
+
 
 class SatDriver(ThreadDriver, driver.Sat):
     def __init__(self, *args, **kwargs):
@@ -88,6 +88,7 @@ def reprint_cfe():
 def sessao_sat():
     res = drivers["hw_fiscal"].action_call_sat("sessao")
     return jsonify(jsonrpc="2.0", result=res)
+
 
 @app.route("/hw_proxy/named_printer_action", methods=["POST"])
 def named_printer_action():
