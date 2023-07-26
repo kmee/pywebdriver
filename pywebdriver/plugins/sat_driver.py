@@ -62,7 +62,7 @@ def int_sat():
     # {"jsonrpc": "2.0", "id": 581330955, "result": true}
 
 
-@app.route("/hw_proxy/enviar_cfe_sat/", methods=["POST", "GET", "PUT"])
+@app.route("/hw_proxy/enviar_cfe_sat", methods=["POST", "GET", "PUT"])
 def enviar_cfe_sat():
     for item in request.json["params"]["json"]["orderlines"]:
         item["amount_estimate_tax"] = 0
@@ -70,13 +70,13 @@ def enviar_cfe_sat():
     return jsonify(jsonrpc="2.0", result=res)
 
 
-@app.route("/hw_proxy/cancelar_cfe/", methods=["POST", "GET", "PUT"])
+@app.route("/hw_proxy/cancelar_cfe", methods=["POST", "GET", "PUT"])
 def cancelar_cfe():
     res = drivers["hw_fiscal"].action_call_sat("cancel", request.json["params"]["json"])
     return jsonify(jsonrpc="2.0", result=res)
 
 
-@app.route("/hw_proxy/reprint_cfe/", methods=["POST", "GET", "PUT"])
+@app.route("/hw_proxy/reprint_cfe", methods=["POST", "GET", "PUT"])
 def reprint_cfe():
     res = drivers["hw_fiscal"].action_call_sat(
         "reprint", request.json["params"]["json"]
