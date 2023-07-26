@@ -25,7 +25,8 @@ PyYAML
 argparse
 argcomplete
 future
-python-escpos
+python-escpos==3.0a9
 pypostelium
 pyposdisplay
 satextrato
+pip-shims
