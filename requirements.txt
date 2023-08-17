@@ -30,3 +30,4 @@ pypostelium
 pyposdisplay
 satextrato
 pip-shims
+pyxmlescpos
