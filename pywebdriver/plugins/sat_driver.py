@@ -1,4 +1,5 @@
 import logging
+from collections import OrderedDict
 
 from erpbrasil.driver.sat import driver
 from flask import jsonify, request
@@ -8,6 +9,9 @@ from pywebdriver import app, drivers
 from .base_driver import ThreadDriver
 
 _logger = logging.getLogger(__name__)
+
+order_transmiting = False
+sended_orders = OrderedDict()
 
 
 class SatDriver(ThreadDriver, driver.Sat):
@@ -52,6 +56,17 @@ class SatDriver(ThreadDriver, driver.Sat):
 # else:
 
 
+def set_transmitted_order_to_dict(order_name, order_value):
+    global sended_orders
+    if len(sended_orders) > 50:
+        last_key = next(reversed(sended_orders))
+        last_order = {last_key: sended_orders[last_key]}
+        sended_orders.clear()
+        sended_orders.update(last_order)
+
+    sended_orders.update({order_name: order_value})
+
+
 @app.route("/hw_proxy/init", methods=["POST", "GET", "PUT"])
 def int_sat():
     res = request.json["params"]["json"]
@@ -64,9 +79,26 @@ def int_sat():
 
 @app.route("/hw_proxy/enviar_cfe_sat", methods=["POST", "GET", "PUT"])
 def enviar_cfe_sat():
-    for item in request.json["params"]["json"]["orderlines"]:
-        item["amount_estimate_tax"] = 0
-    res = drivers["hw_fiscal"].action_call_sat("send", request.json["params"]["json"])
+    global order_transmiting
+    res = ""
+    if (
+        not sended_orders.get(request.json["params"]["json"]["name"])
+        and not order_transmiting
+    ):
+        order_transmiting = True
+        for item in request.json["params"]["json"]["orderlines"]:
+            item["amount_estimate_tax"] = 0
+        res = drivers["hw_fiscal"].action_call_sat(
+            "send", request.json["params"]["json"]
+        )
+        if "06000" in res:
+            set_transmitted_order_to_dict(request.json["params"]["json"]["name"], res)
+        order_transmiting = False
+    elif sended_orders.get(request.json["params"]["json"]["name"]):
+        res = sended_orders.get(request.json["params"]["json"]["name"])
+    else:
+        res = "SAT Ocupado!"
+
     return jsonify(jsonrpc="2.0", result=res)
 
 
