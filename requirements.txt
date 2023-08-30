@@ -12,7 +12,8 @@ Pillow>=2.0
 netifaces
 pycups
 pymtp
-git+https://github.com/erpbrasil/erpbrasil.driver.sat.git@master
+# git+https://github.com/erpbrasil/erpbrasil.driver.sat.git@master
+git+https://github.com/kmee/erpbrasil.driver.sat.git@master
 git+https://github.com/akretion/py-xml-escpos.git@py3
 # git+https://github.com/base4sistemas/satcfe.git@master
 git+https://github.com/kmee/satcomum.git@master
@@ -25,7 +26,7 @@ PyYAML
 argparse
 argcomplete
 future
-python-escpos==3.0a9
+python-escpos==3.0a8
 pypostelium
 pyposdisplay
 satextrato
