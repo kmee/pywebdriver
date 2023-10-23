@@ -44,5 +44,5 @@ satcomum==2.2
 -e git+https://github.com/kmee/erpbrasil.driver.sat.git@temp/ifl#egg=erpbrasil.driver.sat
 -e git+https://github.com/kmee/pyescpos.git@temp/ifl#egg=pyescpos
 -e git+https://github.com/kmee/python-escpos.git#egg=python-escpos
--e git+https://github.com/kmee/pywebdriver.git@temp/ifl#egg=py-xml-escpos
+-e git+https://github.com/kmee/py-xml-escpos.git#egg=py-xml-escpos
 -e git+https://github.com/kmee/satextrato.git@feature/rename-escpos#egg=satextrato
