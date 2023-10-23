@@ -23,7 +23,7 @@ print_status_start=false
 ; You should always enable the driver 'odoo8' if you use Odoo v8+
 ; because otherwize the POSbox logo will be red in Odoo POS frontend
 ; and nothing will work
-drivers = odoo8,telium_driver,escpos_driver
+drivers = odoo8,telium_driver,escpos_driver,scale_driver
 
 [odoo]
 ; [7.0] Define default value for the receipt send by Odoo if not defined
@@ -45,6 +45,16 @@ device_type=usb
 ;serial_baudrate=9600
 ;serial_bytesize=8
 ;serial_timeout=1
+
+[scale_driver]
+; Customise this
+protocol_name=mettler_toledo_8217
+; Time between requests to the scale. The default differs per protocol, and
+; normally should not be changed. Can lead to problems if the value is too low.
+; poll_interval=0.5
+; Used by serial scales
+; port=COM9
+; baudrate=9600
 
 [signature_driver]
 signature_file=signature.svg

@@ -4,7 +4,7 @@ from pywebdriver import app, flask_args
 
 
 def main():
-    app.run(**flask_args)
+    app.run(host='0.0.0.0', port=8069)
 
 
 # Run application
