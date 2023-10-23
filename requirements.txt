@@ -1,17 +1,48 @@
-setuptools>=34
-wheel
-#jcconv
-simplejson
-Flask
-Flask-Babel
-Flask-cors
-pyusb
-pyserial
-pif
-Pillow
-netifaces
-pycups
-pymtp
-git+https://github.com/akretion/py-xml-escpos.git@py3
-pypostelium
-pyposdisplay
+appdirs==1.4.4
+argcomplete==2.0.0
+Babel==2.10.3
+Cerberus==1.3.4
+certifi==2022.6.15
+charset-normalizer==2.1.0
+click==8.1.3
+colorama==0.4.5
+erpbrasil.base==2.2.3
+Flask==2.2.1
+Flask-Babel==2.0.0
+Flask-Cors==3.0.10
+future==0.18.2
+idna==3.3
+importlib-metadata==4.12.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.1
+netifaces==0.11.0
+pif==0.8.2
+Pillow==9.2.0
+PyMTP==0.0.6
+pyposdisplay==0.0.8
+pyserial==3.5
+python-barcode==0.14.0
+python-decouple==3.6
+pytz==2022.1
+pyusb==1.2.1
+pywin32==304
+PyYAML==6.0
+qrcode==7.3.1
+requests==2.28.1
+simplejson==3.17.6
+six==1.16.0
+Unidecode==1.3.4
+urllib3==1.26.11
+viivakoodi==0.8.0
+Werkzeug==2.2.1
+zipp==3.8.1
+satcfe==2.2
+satcomum==2.2
+
+# Custom Libs
+-e git+https://github.com/kmee/erpbrasil.driver.sat.git@temp/ifl#egg=erpbrasil.driver.sat
+-e git+https://github.com/kmee/pyescpos.git@temp/ifl#egg=pyescpos
+-e git+https://github.com/kmee/python-escpos.git#egg=python-escpos
+-e git+https://github.com/kmee/pywebdriver.git@temp/ifl#egg=py-xml-escpos
+-e git+https://github.com/kmee/satextrato.git@feature/rename-escpos#egg=satextrato
