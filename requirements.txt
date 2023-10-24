@@ -39,6 +39,11 @@ Werkzeug==2.2.1
 zipp==3.8.1
 satcfe==2.2
 satcomum==2.2
+flask
+flask_babel
+flask_cors
+netifaces
+pif
 
 # Custom Libs
 -e git+https://github.com/kmee/erpbrasil.driver.sat.git@temp/ifl#egg=erpbrasil.driver.sat
