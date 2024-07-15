@@ -7,9 +7,6 @@ charset-normalizer==2.1.0
 click==8.1.3
 colorama==0.4.5
 erpbrasil.base==2.2.3
-flask
-flask_babel
-flask_cors
 Flask-Babel==2.0.0
 Flask-Cors==3.0.10
 Flask==2.2.1
