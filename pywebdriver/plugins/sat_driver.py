@@ -64,6 +64,13 @@ def int_sat():
 
 @app.route("/hw_proxy/enviar_cfe_sat", methods=["POST", "GET", "PUT"])
 def enviar_cfe_sat():
+    # ---
+    for item in request.json["params"]["json"]["orderlines"]:
+        item.pop("donation_quantity")
+        item["amount_estimate_tax"] = 0
+        if item["product_name"] in ['Donation','Contribuição']:
+            request.json["params"]["json"]["orderlines"].remove(item)
+    # ------------------
     res = drivers["hw_fiscal"].action_call_sat("send", request.json["params"]["json"])
     print("/hw_proxy/enviar_cfe_sat")
     print(res)
