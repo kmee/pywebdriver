@@ -48,17 +48,17 @@ class MettlerToledo8217ScaleDriver(AbstractScaleDriver):
         """Acquire data over the connection."""
         buffer = self._read_raw_data(connection)
         buffer = buffer.decode("utf-8")
-        print("BUFFER")
-        print(buffer)
+        #print("BUFFER")
+        #print(buffer)
         buffersplit = buffer.split("\x02", 1)
-        print("SPLIT BUFFER")
-        print(buffersplit)
-        buffersplitweight = buffersplit[1].split("\x03", 2)
-        print("Buffer OK")
-        print(buffersplitweight)
-        print(buffer)
+        #print("SPLIT BUFFER")
+        #print(buffersplit)
+        buffersplitweight = buffersplit[1]
+        #print("Buffer OK")
+        #print(buffersplitweight)
+        #print(buffer)
         peso = buffersplitweight[0]
-        buffersplitweight = peso[0:2] + "." + peso[2::]
+        #buffersplitweight = peso[0:2] + "." + peso[2::]
         print(buffersplitweight)
         #match = ANSWER_RE.match(buffer)
         #if match is None:
@@ -108,13 +108,13 @@ class MettlerToledo8217ScaleDriver(AbstractScaleDriver):
         while True:
             try:
                 connection.flushInput() 
-                c = connection.read(14)
-                print("Connection")
-                print(c)
+                c = connection.read(7)
+                #print("Connection")
+                #print(c)
                 buffer += c
             except serial.SerialException as e:
                 raise ScaleConnectionError() from e
-            if not c:
+            if c:
                 # timeout
                 #print("Timeout")
                 #raise ScaleAcquireDataError("read time-out")
