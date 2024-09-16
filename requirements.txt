@@ -16,8 +16,7 @@ importlib-metadata==4.12.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
-netifaces
-netifaces==0.11.0
+netifaces-plus
 pif
 pif==0.8.2
 Pillow==9.2.0
