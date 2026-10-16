@@ -64,6 +64,7 @@ coverage.xml
 docs/_build/
 
 # automatic build
+Dockerfile.build
 debuild.sh
 debian/changelog
 debian/debhelper-build-stamp

@@ -1,4 +1,3 @@
-pip>=10.0
 setuptools>=34
 wheel
 #jcconv
@@ -15,5 +14,3 @@ pymtp
 git+https://github.com/akretion/py-xml-escpos.git@py3
 pypostelium
 pyposdisplay
-cerberus
-gunicorn
