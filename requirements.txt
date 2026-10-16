@@ -6,7 +6,7 @@ Flask
 Flask-Babel
 Flask-cors
 pyusb
-pyserial==3.5
+pyserial>=3.5
 Pillow
 netifaces
 pycups
